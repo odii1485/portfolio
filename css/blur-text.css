@@ -1,0 +1,31 @@
+[data-rb-blur-text] .rb-blur-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(0.35em);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--rb-blur-i, 0) * 0.06s);
+}
+
+[data-rb-blur-text].rb-blur-text-visible .rb-blur-word {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.rb-blur-space {
+  display: inline-block;
+  width: 0.28em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rb-blur-text] .rb-blur-word {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,656 @@
+/* ════════════════════════════════════════════════════════════════
+   Selected Work — Cinematic Projects Spread
+   Pinned 100vh stage with five overlapping project spreads.
+   Each spread: framed art on the left, editorial typography on
+   the right, with a 3D flip card revealing case-study details.
+   ════════════════════════════════════════════════════════════════ */
+
+.projects-cinema-section {
+  position: relative;
+}
+
+.cinema-wrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 70% at 18% 28%, rgba(107, 159, 196, 0.16), transparent 60%),
+    radial-gradient(ellipse 55% 55% at 82% 72%, rgba(184, 125, 150, 0.13), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(233, 211, 145, 0.08), transparent 60%),
+    linear-gradient(180deg, rgba(18, 20, 28, 1) 0%, rgba(10, 11, 16, 1) 60%, rgba(8, 9, 12, 1) 100%);
+  isolation: isolate;
+  z-index: 2;
+}
+
+/* Topographic backdrop layer (concentric rings) */
+.cinema-topo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-radial-gradient(circle at 25% 45%, transparent 0 80px, rgba(233, 211, 145, 0.045) 80px 81px, transparent 81px 130px),
+    repeating-radial-gradient(circle at 78% 55%, transparent 0 120px, rgba(168, 198, 185, 0.04) 120px 121px, transparent 121px 180px),
+    repeating-radial-gradient(circle at 50% 100%, transparent 0 150px, rgba(255, 255, 255, 0.025) 150px 151px, transparent 151px 220px);
+  opacity: 1;
+  z-index: 0;
+}
+
+/* Glass surface layer — flat gradient (no backdrop-filter to keep cursor responsive) */
+.cinema-wrap::before {
+  content: '';
+  position: absolute;
+  inset: clamp(32px, 5vh, 64px) clamp(40px, 6vw, 96px);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 45%, transparent 100%),
+    linear-gradient(180deg, rgba(22, 24, 32, 0.55), rgba(12, 14, 20, 0.55));
+  border-radius: clamp(24px, 2.4vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Floating accent glow specks */
+.cinema-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 2px at 14% 22%, rgba(233, 211, 145, 0.65), transparent),
+    radial-gradient(circle 1.5px at 86% 18%, rgba(168, 198, 185, 0.55), transparent),
+    radial-gradient(circle 2px at 8% 78%, rgba(107, 159, 196, 0.55), transparent),
+    radial-gradient(circle 1.5px at 92% 82%, rgba(184, 125, 150, 0.55), transparent),
+    radial-gradient(circle 1px at 50% 8%, rgba(255, 255, 255, 0.4), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cinema-stage {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ── Each spread is absolutely positioned over the stage ───── */
+.cinema-spread {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  padding: clamp(36px, 5vh, 56px) clamp(40px, 6vw, 80px);
+  min-height: 0;
+}
+/* autoAlpha (GSAP) toggles visibility:hidden on inactive spreads, which
+   naturally disables pointer events — no manual pointer-events needed. */
+
+/* ── ART column (left) ─────────────────────────────────────── */
+.cinema-spread__art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1600px;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+  will-change: transform, opacity;
+}
+
+.cinema-card {
+  position: relative;
+  /* Card width clamps between 220 and 380px, preferring whichever of
+     40vw or 50vh is smaller — keeps the card visible on short laptops. */
+  width: clamp(220px, min(38vw, 50vh), 380px);
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  /* Allow the giant numeral to extend past the card edge */
+  overflow: visible;
+}
+
+.cinema-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.cinema-card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* Front face — image fills the entire card with a single clean rounded edge */
+.cinema-card__face--front {
+  background: rgba(8, 9, 12, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.cinema-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: inherit;
+  filter: saturate(0.95) brightness(0.95);
+  transition: transform 1s var(--ease-out);
+}
+
+.cinema-card:hover .cinema-card__photo {
+  transform: scale(1.04);
+}
+
+/* Giant serif numeral — sits outside the face so it can bleed past edges */
+.cinema-card__num {
+  position: absolute;
+  top: -32px;
+  right: -18px;
+  z-index: 5;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  text-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Back face — case study */
+.cinema-card__face--back {
+  transform: rotateY(180deg);
+  padding: clamp(18px, 2vw, 26px);
+  background:
+    linear-gradient(160deg, rgba(20, 22, 26, 0.98), rgba(8, 9, 12, 0.98)),
+    var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--white);
+  text-align: left;
+}
+
+.cinema-card__back-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.cinema-card__back-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--white);
+}
+
+.cinema-card__face--back p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--gray-300);
+}
+
+.cinema-card__tech {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cinema-card__tech li {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--gray-200);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cinema-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 9px 16px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #0b0b10;
+  background: var(--accent);
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.4s var(--ease-out), background 0.3s ease;
+}
+
+.cinema-card__link:hover {
+  transform: translate(2px, -1px);
+  background: #ffd278;
+}
+
+.cinema-card__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.cinema-card__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.cinema-card__close::before {
+  content: '×';
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.cinema-card__close > * { display: none; }
+
+/* ── COPY column (right) ───────────────────────────────────── */
+.cinema-spread__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 460px;
+}
+
+.cinema-spread__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--accent);
+}
+
+.cinema-spread__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cinema-spread__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+.cinema-spread__dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d77471;
+  box-shadow: 0 0 8px rgba(215, 116, 113, 0.55);
+  animation: cinema-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes cinema-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.85); }
+}
+
+.cinema-spread__title {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cinema-spread__word {
+  display: block;
+  overflow: hidden;
+}
+
+.cinema-spread__word em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.cinema-spread__lede {
+  font-size: clamp(0.88rem, 1vw, 0.98rem);
+  line-height: 1.55;
+  color: var(--gray-300);
+  max-width: 42ch;
+  margin: 2px 0 0;
+}
+
+.cinema-spread__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 11px 22px;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.5s var(--ease-out);
+}
+
+.cinema-spread__cta:hover,
+.cinema-spread__cta:focus-visible {
+  background: var(--accent);
+  color: #0b0b10;
+  border-color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.cinema-spread__cta svg {
+  transition: transform 0.5s var(--ease-out);
+}
+
+.cinema-spread__cta:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ── Pager (right rail dots) ───────────────────────────────── */
+.cinema-pager {
+  position: absolute;
+  top: 50%;
+  right: clamp(20px, 2.4vw, 36px);
+  transform: translateY(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.cinema-pager__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  position: relative;
+  transition: background 0.35s ease, transform 0.4s ease;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.cinema-pager__dot:hover {
+  background: rgba(233, 211, 145, 0.7);
+  transform: scale(1.3);
+}
+
+.cinema-pager__dot.is-active {
+  background: var(--accent);
+  transform: scale(1.45);
+}
+
+.cinema-pager__dot span {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--gray-400);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cinema-pager__dot.is-active span {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* ── Per-project accent overrides for icon/title em colors ── */
+.cinema-spread[data-project="wine-b2b"]          .cinema-spread__icon { color: #e9d391; }
+.cinema-spread[data-project="data-cloud-ai"]     .cinema-spread__icon { color: #6b9fc4; }
+.cinema-spread[data-project="shopify-overhaul"]  .cinema-spread__icon { color: #b87d96; }
+.cinema-spread[data-project="sfcc-personal-care"].cinema-spread__icon { color: #8f84c4; }
+.cinema-spread[data-project="travel-sfcc"]       .cinema-spread__icon { color: #a8c6b9; }
+
+/* ════════════════════════════════════════════════════════════════
+   Mobile (<=900px) — natural scroll, vertical stacked cards
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Kill the pinned-stage backdrops on mobile — they were sized for a
+     100vh stage and look broken when the wrap grows to fit all cards. */
+  .cinema-wrap {
+    height: auto !important;
+    min-height: 0;
+    overflow: visible !important;
+    padding: 8px 0 16px;
+    background:
+      radial-gradient(ellipse 90% 50% at 50% 0%, rgba(233, 211, 145, 0.06), transparent 70%),
+      transparent;
+    isolation: auto;
+  }
+  .cinema-wrap::before,
+  .cinema-wrap::after,
+  .cinema-topo {
+    display: none !important;
+  }
+
+  .cinema-stage {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 7vw, 48px);
+    padding: 16px clamp(16px, 5vw, 24px) 24px;
+    z-index: 1;
+  }
+
+  /* Each spread is now a standalone card stacked vertically. */
+  .cinema-spread {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px;
+    width: 100%;
+    background:
+      linear-gradient(155deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01) 60%),
+      rgba(14, 16, 22, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .cinema-spread__art {
+    perspective: 1100px;
+    height: auto;
+    width: 100%;
+  }
+
+  .cinema-card {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+  }
+
+  .cinema-card__face {
+    border-radius: 18px;
+  }
+
+  /* Number sits inside the card area; small and on the corner */
+  .cinema-card__num {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    top: -16px;
+    right: 4px;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  }
+
+  .cinema-spread__copy {
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .cinema-spread__title {
+    font-size: clamp(1.4rem, 6.5vw, 2rem);
+    line-height: 1.08;
+  }
+
+  .cinema-spread__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cinema-spread__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cinema-spread__meta {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+  }
+
+  .cinema-spread__lede {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  .cinema-spread__cta {
+    padding: 10px 18px;
+    font-size: 0.78rem;
+  }
+
+  .cinema-card__face--back {
+    padding: 14px 16px;
+    gap: 8px;
+  }
+
+  .cinema-card__back-title {
+    font-size: 1rem;
+  }
+
+  .cinema-card__face--back p {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .cinema-card__tech li {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+
+  .cinema-card__link {
+    padding: 8px 14px;
+    font-size: 0.72rem;
+  }
+
+  .cinema-pager {
+    display: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Reduced motion — static layout, no flip, no breathing
+   ════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .cinema-wrap {
+    height: auto;
+    overflow: visible;
+  }
+
+  .cinema-stage {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 10vw, 80px);
+    padding: 24px clamp(20px, 5vw, 32px);
+  }
+
+  .cinema-spread {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .cinema-card {
+    transition: none;
+  }
+
+  .cinema-spread__dot {
+    animation: none;
+  }
+
+  .cinema-pager {
+    display: none;
+  }
+}

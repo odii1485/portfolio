@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Rahul Odedra — QA Engineer">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0908"/>
+      <stop offset="55%" stop-color="#12100e"/>
+      <stop offset="100%" stop-color="#0a0908"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="18%" cy="22%" r="45%">
+      <stop offset="0%" stop-color="#e9d391" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#e9d391" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowR" cx="88%" cy="78%" r="42%">
+      <stop offset="0%" stop-color="#a8c6b9" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#a8c6b9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e9d391"/>
+      <stop offset="100%" stop-color="#a8c6b9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowL)"/>
+  <rect width="1200" height="630" fill="url(#glowR)"/>
+  <g opacity="0.12" stroke="#e9d391" stroke-width="1" fill="none">
+    <path d="M920 80 L1100 80 L1100 260"/>
+    <path d="M980 140 L1140 140"/>
+    <circle cx="1040" cy="200" r="48"/>
+  </g>
+  <rect x="72" y="72" width="4" height="120" fill="url(#accent)" rx="2"/>
+  <rect x="96" y="96" width="88" height="88" rx="18" fill="none" stroke="url(#accent)" stroke-width="2"/>
+  <text x="140" y="152" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="400" fill="#e9d391">RO</text>
+  <text x="220" y="148" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#f5f2eb" letter-spacing="-1">Rahul Odedra</text>
+  <text x="220" y="198" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" fill="rgba(245,242,235,0.72)" letter-spacing="0.5">Consultant QA Engineer · Astound Digital</text>
+  <text x="220" y="248" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="rgba(168,198,185,0.95)">ISTQB · Salesforce · Shopify · commercetools</text>
+  <g transform="translate(220, 290)">
+    <rect x="0" y="0" width="248" height="44" rx="22" fill="rgba(233,211,145,0.12)" stroke="rgba(233,211,145,0.35)" stroke-width="1"/>
+    <text x="124" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#e9d391" font-weight="500">Salesforce Commerce</text>
+    <rect x="264" y="0" width="168" height="44" rx="22" fill="rgba(168,198,185,0.1)" stroke="rgba(168,198,185,0.32)" stroke-width="1"/>
+    <text x="348" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#bdd4c8" font-weight="500">Shopify QA</text>
+    <rect x="448" y="0" width="200" height="44" rx="22" fill="rgba(233,211,145,0.08)" stroke="rgba(233,211,145,0.28)" stroke-width="1"/>
+    <text x="548" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#e9d391" font-weight="500">Test Automation</text>
+  </g>
+  <text x="220" y="560" font-family="system-ui, sans-serif" font-size="20" fill="rgba(245,242,235,0.45)">rahul-odedra.netlify.app</text>
+  <line x1="72" y1="558" x2="1128" y2="558" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+</svg>

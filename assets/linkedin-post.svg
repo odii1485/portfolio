@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-label="Rahul Odedra — LinkedIn post">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0908"/>
+      <stop offset="50%" stop-color="#12100e"/>
+      <stop offset="100%" stop-color="#0a0908"/>
+    </linearGradient>
+    <radialGradient id="glowT" cx="50%" cy="12%" r="55%">
+      <stop offset="0%" stop-color="#e9d391" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#e9d391" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="92%" r="45%">
+      <stop offset="0%" stop-color="#a8c6b9" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#a8c6b9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e9d391"/>
+      <stop offset="100%" stop-color="#a8c6b9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1350" fill="url(#bg)"/>
+  <rect width="1080" height="1350" fill="url(#glowT)"/>
+  <rect width="1080" height="1350" fill="url(#glowB)"/>
+  <rect x="80" y="100" width="4" height="100" fill="url(#accent)" rx="2"/>
+  <rect x="104" y="124" width="96" height="96" rx="20" fill="none" stroke="url(#accent)" stroke-width="2"/>
+  <text x="152" y="182" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#e9d391">RO</text>
+  <text x="104" y="280" font-family="Georgia, serif" font-size="88" fill="#f5f2eb" letter-spacing="-1">Rahul Odedra</text>
+  <text x="104" y="340" font-family="system-ui, sans-serif" font-size="32" fill="rgba(245,242,235,0.75)">Consultant QA Engineer · Astound Digital</text>
+  <text x="104" y="420" font-family="Georgia, serif" font-size="36" fill="rgba(245,242,235,0.9)">I ensure every digital</text>
+  <text x="104" y="468" font-family="Georgia, serif" font-size="36" fill="rgba(245,242,235,0.9)">experience ships <tspan fill="#e9d391" font-style="italic">flawlessly.</tspan></text>
+  <g transform="translate(104, 560)">
+    <rect width="520" height="52" rx="26" fill="rgba(233,211,145,0.1)" stroke="rgba(233,211,145,0.35)" stroke-width="1"/>
+    <text x="260" y="34" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#e9d391" font-weight="500">Salesforce Commerce · B2B · Sales · Experience</text>
+    <rect y="72" width="420" height="52" rx="26" fill="rgba(168,198,185,0.1)" stroke="rgba(168,198,185,0.32)" stroke-width="1"/>
+    <text x="210" y="106" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#bdd4c8" font-weight="500">Shopify Quality Engineering</text>
+    <rect y="144" width="380" height="52" rx="26" fill="rgba(233,211,145,0.08)" stroke="rgba(233,211,145,0.28)" stroke-width="1"/>
+    <text x="190" y="178" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#e9d391" font-weight="500">ISTQB CTFL · 8 Certifications</text>
+    <rect y="216" width="400" height="52" rx="26" fill="rgba(168,198,185,0.08)" stroke="rgba(168,198,185,0.28)" stroke-width="1"/>
+    <text x="200" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#a8c6b9" font-weight="500">Manual, API &amp; Performance Testing</text>
+  </g>
+  <line x1="80" y1="1180" x2="1000" y2="1180" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="104" y="1240" font-family="system-ui, sans-serif" font-size="28" fill="#e9d391" font-weight="600">Portfolio &amp; services</text>
+  <text x="104" y="1285" font-family="system-ui, sans-serif" font-size="24" fill="rgba(245,242,235,0.5)">rahul-odedra.netlify.app</text>
+</svg>

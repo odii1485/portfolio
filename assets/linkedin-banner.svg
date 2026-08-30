@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-label="Rahul Odedra — LinkedIn banner">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0b09"/>
+      <stop offset="40%" stop-color="#141210"/>
+      <stop offset="100%" stop-color="#0a0908"/>
+    </linearGradient>
+    <linearGradient id="washR" x1="100%" y1="50%" x2="55%" y2="50%">
+      <stop offset="0%" stop-color="#e9d391" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#a8c6b9" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0a0908" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e9d391"/>
+      <stop offset="100%" stop-color="#a8c6b9"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="rgba(233,211,145,0.07)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Base -->
+  <rect width="1584" height="396" fill="url(#bg)"/>
+  <rect width="1584" height="396" fill="url(#washR)"/>
+  <rect x="380" y="0" width="1204" height="396" fill="url(#grid)"/>
+
+  <!-- Left: keep clear for profile photo (no text below x≈400) -->
+  <rect x="0" y="0" width="380" height="396" fill="rgba(10,9,8,0.55)"/>
+
+  <!-- Decorative geometry (right — sharp vectors, no blur) -->
+  <g stroke="#e9d391" fill="none" stroke-width="1.5" opacity="0.45">
+    <circle cx="1380" cy="198" r="72"/>
+    <circle cx="1380" cy="198" r="108" opacity="0.5"/>
+    <path d="M1280 88 H1480 V288" stroke-width="2"/>
+    <path d="M1320 128 H1440" opacity="0.7"/>
+    <path d="M1320 168 H1420" opacity="0.7"/>
+    <path d="M1320 208 H1440" opacity="0.7"/>
+  </g>
+  <circle cx="1460" cy="98" r="5" fill="#e9d391" opacity="0.8"/>
+  <circle cx="1500" cy="268" r="4" fill="#a8c6b9" opacity="0.85"/>
+  <circle cx="1260" cy="298" r="3" fill="#e9d391" opacity="0.65"/>
+
+  <!-- Text block — safe zone (right of profile photo) -->
+  <rect x="468" y="72" width="5" height="252" fill="url(#accent)" rx="2.5"/>
+  <text x="500" y="158" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="400" fill="#ffffff" letter-spacing="-0.5">Rahul Odedra</text>
+  <text x="500" y="208" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="500" fill="#e9d391">Consultant QA Engineer · Astound Digital</text>
+  <text x="500" y="252" font-family="system-ui, sans-serif" font-size="22" font-weight="500" fill="#c5ddd4">Salesforce Commerce · Shopify · commercetools</text>
+  <text x="500" y="292" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#bdd4c8">ISTQB CTFL · 8 Certifications · Manual &amp; API Testing</text>
+  <text x="500" y="332" font-family="system-ui, sans-serif" font-size="17" fill="rgba(245,242,235,0.55)">rahul-odedra.netlify.app</text>
+
+  <!-- Bottom edge -->
+  <line x1="468" y1="368" x2="1520" y2="368" stroke="rgba(233,211,145,0.25)" stroke-width="1"/>
+</svg>

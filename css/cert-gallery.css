@@ -1,0 +1,212 @@
+/* ════════════════════════════════════════════
+   Cert 3D orbit gallery (unchanged behavior)
+   ════════════════════════════════════════════ */
+
+.cert-carousel[data-cert-orbit] {
+  position: relative;
+  overflow: visible;
+  margin-top: 24px;
+  padding: 0 48px 16px;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cert-carousel[data-cert-orbit] .circular-gallery {
+  min-height: clamp(260px, 28vw, 320px);
+  max-height: 320px;
+  width: 100%;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.cert-carousel[data-cert-orbit] .circular-gallery canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.cert-carousel[data-cert-orbit] .cert-nav {
+  display: inline-flex !important;
+  z-index: 8;
+}
+
+.cert-flip-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.cert-flip-panel.is-open {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.cert-flip-panel-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.cert-flip-panel-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 300px);
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.cert-flip-panel-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.cert-flip-panel-hint {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 16px;
+}
+
+.cert-flip-panel-inner {
+  perspective: 1200px;
+}
+
+.cert-flip-panel-flip {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  transform-style: preserve-3d;
+  transition: transform 0.65s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.cert-flip-panel-flip.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Panel faces — single layer (not nested inside another .cert-face) */
+.cert-flip-panel-flip > .cert-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cert-flip-panel-flip > .cert-front {
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  gap: 6px;
+}
+
+.cert-flip-panel-flip > .cert-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.cert-flip-panel-flip .cert-badge-wrap {
+  position: relative;
+  width: 96px;
+  height: 110px;
+  margin: 0 0 10px;
+  flex-shrink: 0;
+}
+
+.cert-flip-panel-flip .cert-badge-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cert-flip-panel-flip .cert-badge-img[src*='istqb'] {
+  mix-blend-mode: screen;
+  filter: contrast(1.18) brightness(1.08) saturate(1.15);
+}
+
+.cert-flip-panel-flip .cert-front h4,
+.cert-flip-panel-flip .cert-back h4 {
+  color: var(--gray-100);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.cert-flip-panel-flip .cert-back p {
+  color: var(--gray-300);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.cert-flip-panel-flip .cert-card-tag,
+.cert-flip-panel-flip .cert-card-year,
+.cert-flip-panel-flip .cert-back-year,
+.cert-flip-panel-flip .cert-back-foot {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.cert-gallery-kbd-hint {
+  margin: 12px auto 0;
+  max-width: 920px;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .cert-gallery-kbd-hint { display: none; }
+
+  .cert-carousel[data-cert-orbit] {
+    padding: 0 12px 24px;
+  }
+
+  .cert-carousel[data-cert-orbit] .cert-nav-prev {
+    left: 4px;
+  }
+
+  .cert-carousel[data-cert-orbit] .cert-nav-next {
+    right: 4px;
+  }
+}

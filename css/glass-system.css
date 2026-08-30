@@ -1,0 +1,229 @@
+/* ════════════════════════════════════════════
+   Readability: sparse glass + solid surfaces + type
+   ════════════════════════════════════════════ */
+
+:root {
+  --rb-glass-border: rgba(233, 211, 145, 0.14);
+  --rb-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --rb-glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.32);
+  --rb-surface-bg: rgba(10, 10, 12, 0.88);
+  --rb-surface-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Glass: floating UI only (nav, modals, rec cards, work docks) ── */
+.rb-readability-glass,
+.rb-readability-glass--heavy,
+.rb-readability-glass--light {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid var(--rb-glass-border);
+  box-shadow: var(--rb-glass-highlight), var(--rb-glass-shadow);
+  isolation: isolate;
+}
+
+.rb-readability-glass {
+  padding: clamp(20px, 3vw, 28px);
+  background: rgba(6, 6, 8, 0.62);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+
+.rb-readability-glass--heavy {
+  padding: clamp(22px, 3vw, 32px);
+  background: rgba(4, 4, 6, 0.78);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+.rb-readability-glass--light {
+  padding: clamp(14px, 2vw, 18px);
+  background: rgba(10, 10, 12, 0.48);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .rb-readability-glass { background: rgba(8, 8, 10, 0.92); }
+  .rb-readability-glass--heavy { background: rgba(6, 6, 8, 0.95); }
+  .rb-readability-glass--light { background: rgba(10, 10, 12, 0.88); }
+}
+
+/* ── Solid surfaces (skills, industries, CTA — no blur bloat) ── */
+.rb-surface-solid {
+  position: relative;
+  background: var(--rb-surface-bg);
+  border: 1px solid var(--rb-surface-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+/* ── Typography legibility on animated backgrounds ── */
+#about .big-heading,
+#skills .big-heading,
+#journey .big-heading,
+#work .big-heading,
+#impact .big-heading,
+#services .big-heading,
+#certifications .big-heading,
+#achievements .big-heading,
+#industries .big-heading,
+.hero-headline,
+.hero-sub {
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
+}
+
+#about .about-right,
+#journey .timeline-content p,
+#services .svc-info p,
+.section-sub {
+  color: var(--gray-200, #d8d8de);
+}
+
+/* ── Soft column wash (no visible card) ── */
+.rb-zone-scrim {
+  position: relative;
+}
+
+.rb-zone-scrim::before {
+  content: '';
+  position: absolute;
+  inset: -8% -4%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 45%,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.12) 55%,
+    transparent 78%
+  );
+}
+
+#about .about-grid.rb-zone-scrim::before {
+  background: radial-gradient(
+    ellipse 90% 80% at 40% 50%,
+    rgba(0, 0, 0, 0.38) 0%,
+    transparent 72%
+  );
+}
+
+/* Legacy aliases */
+.glass-panel,
+.cert-flip-panel-card.glass-panel-heavy {
+  border-radius: 20px;
+  border: 1px solid var(--rb-glass-border);
+  box-shadow: var(--rb-glass-highlight), var(--rb-glass-shadow);
+}
+
+.glass-panel-heavy,
+.cert-flip-panel-card.glass-panel-heavy {
+  background: rgba(4, 4, 6, 0.78);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+.rec-card.glass,
+.process-card.glass,
+.showcase-chip.glass,
+.services-hero-pill.glass {
+  border-color: var(--rb-glass-border);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+
+.work-project-card__body.rb-readability-glass--heavy,
+.work-editorial-dock.rb-readability-glass--heavy {
+  border-radius: 20px;
+}
+
+.timeline-content {
+  padding: 24px 28px;
+}
+
+.ind-card.rb-surface-solid {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 28px 24px;
+  background: rgba(10, 10, 12, 0.78);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+#industries .big-heading,
+#industries .eyebrow {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+
+.agentblazer-meta.rb-surface-solid {
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-top: 16px;
+}
+
+/* ── Contact — glass panels over line-waves / light background ── */
+#contact .contact-left.rb-readability-glass--heavy {
+  border-radius: 24px;
+}
+
+#contact .contact-left .big-heading,
+#contact .contact-intro,
+#contact .contact-details a,
+#contact .contact-details p {
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
+}
+
+#contact .contact-intro {
+  color: var(--gray-200, #d4d4da);
+}
+
+#contact #contact-form.rb-readability-glass--heavy {
+  background: rgba(4, 4, 6, 0.78);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--rb-glass-border);
+  border-radius: 24px;
+  box-shadow: var(--rb-glass-highlight), var(--rb-glass-shadow);
+}
+
+#contact #contact-form input,
+#contact #contact-form textarea {
+  background: rgba(0, 0, 0, 0.42);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+#contact #contact-form input:focus,
+#contact #contact-form textarea:focus {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: var(--accent);
+}
+
+#schedule .schedule-panel.rb-readability-glass--heavy,
+#schedule .schedule-info.rb-readability-glass--heavy,
+#schedule .schedule-widget.rb-readability-glass--heavy {
+  border-radius: 24px;
+}
+
+#schedule .schedule-calendly-shell .calendly-inline-widget {
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 769px) {
+  #schedule .schedule-calendly-shell .calendly-inline-widget {
+    min-height: 680px;
+  }
+}
+
+#recommendations .rec-top.rb-readability-glass--light {
+  border-radius: 20px;
+  margin-bottom: 40px;
+  max-width: 900px;
+}
+
+#services-hero .services-hero-inner.rb-readability-glass--heavy {
+  border-radius: 24px;
+  max-width: 920px;
+}

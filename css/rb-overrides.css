@@ -1,0 +1,582 @@
+/* ════════════════════════════════════════════
+   Redesign overrides — section shells + React-Bits backgrounds
+   ════════════════════════════════════════════ */
+
+#hero,
+#about,
+#skills,
+#journey,
+#work,
+#impact,
+#services,
+#certifications,
+#achievements,
+#industries,
+#cta-section,
+#contact,
+#schedule,
+#services-hero,
+#services-process,
+.service-detail,
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full-bleed WebGL layer (hero is max-width centered in style.css) */
+#hero .rb-bg-layer {
+  width: 100vw;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  opacity: 0.88;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.38) 0%,
+    rgba(5, 5, 5, 0.18) 45%,
+    rgba(5, 5, 5, 0.42) 100%
+  );
+}
+
+.rb-bg-layer {
+  min-height: 100%;
+}
+
+.rb-content-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.55) 0%,
+    rgba(5, 5, 5, 0.28) 42%,
+    rgba(5, 5, 5, 0.45) 100%
+  );
+}
+
+#skills .rb-content-scrim,
+#impact .rb-content-scrim,
+#achievements .rb-content-scrim,
+#industries .rb-content-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.28) 0%,
+    rgba(5, 5, 5, 0.08) 50%,
+    rgba(5, 5, 5, 0.22) 100%
+  );
+}
+
+#work .rb-content-scrim,
+#journey .rb-content-scrim,
+#services .rb-content-scrim,
+#about .rb-content-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.22) 0%,
+    rgba(5, 5, 5, 0.06) 48%,
+    rgba(5, 5, 5, 0.18) 100%
+  );
+}
+
+/* Certifications — Color Bends (above dot-grid ::after) */
+#certifications::after {
+  z-index: 0;
+}
+
+#certifications .rb-bg-layer[data-rb-color-bends] {
+  opacity: 0.52;
+  z-index: 1;
+}
+
+#certifications .rb-content-scrim--certs {
+  z-index: 2;
+}
+
+#certifications .rb-bg-layer[data-rb-color-bends] canvas {
+  mix-blend-mode: screen;
+}
+
+#certifications .rb-content-scrim--certs {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.55) 0%,
+    rgba(5, 5, 5, 0.28) 45%,
+    rgba(5, 5, 5, 0.45) 100%
+  );
+}
+
+/* Light rays + shape grid backgrounds */
+#skills .rb-bg-layer[data-rb-light-rays] {
+  opacity: 0.95;
+}
+
+#skills .rb-content-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.22) 0%,
+    rgba(5, 5, 5, 0.04) 50%,
+    rgba(5, 5, 5, 0.16) 100%
+  );
+}
+
+#impact .rb-bg-layer[data-rb-shape-grid],
+#achievements .rb-bg-layer[data-rb-shape-grid],
+#industries .rb-bg-layer[data-rb-shape-grid],
+#journey .rb-bg-layer[data-rb-shape-grid] {
+  opacity: 1;
+}
+
+#impact .rb-bg-layer[data-rb-shape-grid] canvas,
+#achievements .rb-bg-layer[data-rb-shape-grid] canvas,
+#industries .rb-bg-layer[data-rb-shape-grid] canvas {
+  pointer-events: none;
+}
+
+#industries .rb-content-scrim--industries {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.35) 0%,
+    rgba(5, 5, 5, 0.08) 42%,
+    rgba(5, 5, 5, 0.28) 100%
+  );
+}
+
+.rb-content-scrim--subtle {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.2) 0%,
+    rgba(5, 5, 5, 0.05) 50%,
+    rgba(5, 5, 5, 0.18) 100%
+  );
+}
+
+#about .rb-content-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.35) 0%,
+    rgba(5, 5, 5, 0.12) 50%,
+    rgba(5, 5, 5, 0.28) 100%
+  );
+}
+
+#about .rb-silk-layer,
+#about .rb-bg-layer[data-rb-silk] {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+#hero > .hero-inner,
+#hero .hero-image .scroll-badge,
+#about > .container,
+#skills > .container,
+#journey > .container,
+#work > .container,
+#work > .pin-wrap,
+#work > .work-v2-list,
+#work > .cinema-wrap,
+#work > .work-editorial,
+#impact > .container,
+#services > .container,
+#certifications > .container,
+#achievements > .container,
+#industries > .container,
+#cta-section > .container,
+#contact > .container,
+#schedule > .container,
+#services-hero > .container,
+#services-process > .container,
+.service-detail > .container,
+footer > .container {
+  position: relative;
+  z-index: 2;
+}
+
+#hero,
+#journey,
+#work {
+  background: var(--bg);
+}
+
+#about,
+#skills,
+#impact,
+#services,
+#certifications,
+#achievements,
+#contact,
+#schedule {
+  background: var(--bg-2);
+}
+
+#industries {
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(233, 211, 145, 0.06), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 88% 75%, rgba(107, 159, 196, 0.07), transparent 50%),
+    var(--bg);
+}
+
+/* Services page — hero Prism (interactive) */
+#services-hero .rb-bg-layer[data-rb-prism] {
+  width: 100vw;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  opacity: 0.94;
+}
+
+#services-hero .services-hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 25%, rgba(233, 211, 145, 0.14), transparent 58%),
+    radial-gradient(ellipse 60% 50% at 88% 70%, rgba(168, 198, 185, 0.12), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(107, 159, 196, 0.08), transparent 60%);
+}
+
+#services-hero .rb-content-scrim--services-hero {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.32) 0%,
+    rgba(5, 5, 5, 0.1) 48%,
+    rgba(5, 5, 5, 0.28) 100%
+  );
+}
+
+/* Service detail — tinted base + visible shape grid */
+.service-detail {
+  background: var(--bg-2);
+}
+
+.service-detail.alt {
+  background: var(--bg);
+}
+
+.service-detail[data-color='cyan'] {
+  background:
+    radial-gradient(ellipse 75% 55% at 92% 18%, rgba(107, 159, 196, 0.14), transparent 58%),
+    var(--bg-2);
+}
+
+.service-detail.alt[data-color='pink'] {
+  background:
+    radial-gradient(ellipse 70% 50% at 8% 80%, rgba(184, 125, 150, 0.12), transparent 55%),
+    var(--bg);
+}
+
+.service-detail[data-color='purple'] {
+  background:
+    radial-gradient(ellipse 72% 52% at 90% 35%, rgba(143, 132, 196, 0.14), transparent 58%),
+    var(--bg-2);
+}
+
+.service-detail.alt[data-color='green'] {
+  background:
+    radial-gradient(ellipse 68% 48% at 15% 25%, rgba(233, 211, 145, 0.12), transparent 55%),
+    var(--bg);
+}
+
+.service-detail[data-color='amber'] {
+  background:
+    radial-gradient(ellipse 70% 50% at 85% 22%, rgba(255, 183, 3, 0.11), transparent 58%),
+    var(--bg-2);
+}
+
+.service-detail.alt[data-color='violet'] {
+  background:
+    radial-gradient(ellipse 72% 52% at 10% 70%, rgba(123, 44, 191, 0.13), transparent 55%),
+    var(--bg);
+}
+
+.service-detail[data-color='cyan2'] {
+  background:
+    radial-gradient(ellipse 70% 50% at 88% 75%, rgba(94, 234, 212, 0.12), transparent 58%),
+    var(--bg-2);
+}
+
+.service-detail::after,
+.service-detail.alt::before {
+  z-index: 0;
+  opacity: 0.85;
+}
+
+.service-detail .rb-bg-layer[data-rb-shape-grid] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.service-detail .rb-content-scrim--services-detail {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.18) 0%,
+    rgba(5, 5, 5, 0.03) 45%,
+    rgba(5, 5, 5, 0.14) 100%
+  );
+}
+
+html.rb-reduced-motion .rb-bg-layer {
+  display: none !important;
+}
+
+html.rb-reduced-motion .marquee-section[data-logo-loop] .logoloop__track,
+html.rb-reduced-motion .services-process-marquee[data-logo-loop] .logoloop__track {
+  animation: none !important;
+}
+
+#recommendations.video-section {
+  background: var(--black);
+}
+
+#recommendations .rb-bg-layer--rec {
+  z-index: 0;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+#recommendations .video-bg-wrap {
+  z-index: 1;
+}
+
+/* ── file:// fallback (no ES modules / WebGL) ── */
+html.rb-file-protocol .rb-bg-layer {
+  display: none;
+}
+
+html.rb-file-protocol #hero {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(107, 159, 196, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(157, 142, 196, 0.07) 0%, transparent 50%),
+    var(--bg);
+}
+
+html.rb-file-protocol #about {
+  background:
+    radial-gradient(ellipse 90% 70% at 30% 40%, rgba(90, 109, 133, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 75% 60%, rgba(107, 159, 196, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+html.rb-file-protocol #skills {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(143, 132, 196, 0.06) 50%, var(--bg) 100%);
+}
+
+html.rb-file-protocol #journey {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(107, 159, 196, 0.04) 50%, var(--bg) 100%);
+}
+
+html.rb-file-protocol #impact {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(122, 110, 184, 0.05) 50%, var(--bg) 100%);
+}
+
+html.rb-file-protocol #services {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(201, 184, 150, 0.04) 50%, var(--bg-2) 100%);
+}
+
+html.rb-file-protocol #certifications {
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(196, 165, 116, 0.07) 0%, transparent 55%),
+    var(--bg-2);
+}
+
+html.rb-file-protocol #achievements {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(107, 159, 196, 0.05) 50%, var(--bg) 100%);
+}
+
+html.rb-file-protocol #industries {
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(233, 211, 145, 0.08), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 88% 75%, rgba(107, 159, 196, 0.09), transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+html.rb-file-protocol #contact,
+html.rb-file-protocol #schedule {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(184, 125, 150, 0.04) 50%, var(--bg) 100%);
+}
+
+html.rb-file-protocol #services-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(233, 211, 145, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168, 198, 185, 0.08) 0%, transparent 50%),
+    var(--bg);
+}
+
+html.rb-file-protocol #services-process {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(107, 159, 196, 0.05) 50%, var(--bg-2) 100%);
+}
+
+html.rb-file-protocol .service-detail[data-color='cyan'] {
+  background:
+    radial-gradient(ellipse 75% 55% at 92% 18%, rgba(107, 159, 196, 0.12) 0%, transparent 58%),
+    var(--bg-2);
+}
+
+/* Safari — always paint section gradients (WebGL canvas may exist but not paint) */
+html.rb-safari #hero {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(107, 159, 196, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(157, 142, 196, 0.1) 0%, transparent 50%),
+    var(--bg);
+}
+
+html.rb-safari #about {
+  background:
+    radial-gradient(ellipse 90% 70% at 30% 40%, rgba(90, 109, 133, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 75% 60%, rgba(107, 159, 196, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+html.rb-safari #skills {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(143, 132, 196, 0.1) 50%, var(--bg) 100%);
+}
+
+html.rb-safari #journey {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(107, 159, 196, 0.08) 50%, var(--bg) 100%);
+}
+
+html.rb-safari #impact {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(122, 110, 184, 0.09) 50%, var(--bg) 100%);
+}
+
+html.rb-safari #services {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(201, 184, 150, 0.06) 50%, var(--bg-2) 100%);
+}
+
+html.rb-safari #certifications {
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(196, 165, 116, 0.1) 0%, transparent 55%),
+    var(--bg-2);
+}
+
+html.rb-safari #achievements {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(107, 159, 196, 0.08) 50%, var(--bg) 100%);
+}
+
+html.rb-safari #industries {
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(233, 211, 145, 0.1), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 88% 75%, rgba(107, 159, 196, 0.11), transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+html.rb-safari #contact,
+html.rb-safari #schedule {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(184, 125, 150, 0.06) 50%, var(--bg) 100%);
+}
+
+html.rb-safari #services-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(233, 211, 145, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168, 198, 185, 0.12) 0%, transparent 50%),
+    var(--bg);
+}
+
+html.rb-safari #services-process {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(107, 159, 196, 0.07) 50%, var(--bg-2) 100%);
+}
+
+html.rb-safari .service-detail {
+  background:
+    radial-gradient(ellipse 70% 50% at 88% 22%, rgba(107, 159, 196, 0.12) 0%, transparent 58%),
+    var(--bg-2);
+}
+
+html.rb-safari #recommendations.video-section {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107, 159, 196, 0.12) 0%, transparent 55%),
+    var(--black);
+}
+
+html.rb-safari #about .rb-content-scrim,
+html.rb-safari #skills .rb-content-scrim,
+html.rb-safari #hero::after {
+  opacity: 0.72;
+}
+
+html.rb-safari .rb-bg-layer[data-rb-mount-failed],
+html.rb-safari .rb-bg-layer[data-rb-mount-failed] canvas {
+  display: none !important;
+}
+
+/* Mobile shell — CSS gradients when WebGL is slow or unavailable */
+html.rb-mobile-shell.rb-file-protocol .rb-bg-layer {
+  display: none;
+}
+
+html.rb-mobile-shell #about:not(:has(canvas)) {
+  background:
+    radial-gradient(ellipse 90% 70% at 30% 40%, rgba(90, 109, 133, 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 75% 60%, rgba(107, 159, 196, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+html.rb-mobile-shell #hero:not(:has(canvas)) {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(107, 159, 196, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(157, 142, 196, 0.08) 0%, transparent 50%),
+    var(--bg);
+}
+
+html.rb-mobile-shell #skills:not(:has(canvas)) {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(143, 132, 196, 0.08) 50%, var(--bg) 100%);
+}
+
+html.rb-mobile-shell #journey:not(:has(canvas)) {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(107, 159, 196, 0.06) 50%, var(--bg) 100%);
+}
+
+html.rb-mobile-shell #impact:not(:has(canvas)) {
+  background: linear-gradient(180deg, var(--bg-2) 0%, rgba(122, 110, 184, 0.07) 50%, var(--bg) 100%);
+}
+
+html.rb-mobile-shell #achievements:not(:has(canvas)) {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(107, 159, 196, 0.07) 50%, var(--bg) 100%);
+}
+
+html.rb-mobile-shell #industries:not(:has(canvas)) {
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(233, 211, 145, 0.08), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 88% 75%, rgba(107, 159, 196, 0.09), transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+html.rb-mobile-shell #certifications:not(:has(canvas)) {
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(196, 165, 116, 0.08) 0%, transparent 55%),
+    var(--bg-2);
+}
+
+html.rb-mobile-shell #services-hero:not(:has(canvas)) {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(233, 211, 145, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168, 198, 185, 0.1) 0%, transparent 50%),
+    var(--bg);
+}
+
+html.rb-mobile-shell .service-detail:not(:has(canvas)) {
+  background:
+    radial-gradient(ellipse 70% 50% at 88% 22%, rgba(107, 159, 196, 0.1) 0%, transparent 58%),
+    var(--bg-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rb-bg-layer {
+    display: none;
+  }
+
+  #hero {
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107, 159, 196, 0.08) 0%, transparent 55%),
+      var(--bg);
+  }
+}

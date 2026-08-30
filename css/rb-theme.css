@@ -1,0 +1,148 @@
+/* ════════════════════════════════════════════
+
+   Phase 8 — Champagne → seafoam premium palette
+
+   Load last; reinforces tokens from style.css :root
+
+   ════════════════════════════════════════════ */
+
+
+
+:root {
+
+  --rb-champagne: var(--accent-champagne);
+
+  --rb-sapphire: var(--accent-teal);
+
+  --rb-amethyst: #b8c9e8;
+
+  --rb-rose: #d4a8b8;
+
+}
+
+
+
+/* ── Gooey nav pill colors ── */
+
+.gooey-nav-container {
+
+  --color-1: var(--accent-champagne);
+
+  --color-2: var(--accent-teal);
+
+  --color-3: #bdd4c8;
+
+  --color-4: #f2e4b5;
+
+}
+
+
+
+/* ── React-Bits components ── */
+
+.card-nav-flow {
+
+  background: rgba(var(--accent-rgb), 0.1);
+
+  border-color: rgba(168, 198, 185, 0.32);
+
+}
+
+
+
+.rb-flowing-menu-host .marquee span {
+
+  background: var(--grad-accent);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  color: transparent;
+
+}
+
+
+
+.hero-profile-card .pc-shine {
+
+  background: radial-gradient(
+
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+
+    rgba(233, 211, 145, 0.2) 0%,
+
+    rgba(168, 198, 185, 0.12) 40%,
+
+    transparent 70%
+
+  );
+
+}
+
+
+
+/* Hero specialty line — react-bits.css (.hero-specialty) */
+
+
+
+.scroll-badge-arrow {
+
+  background: var(--grad-accent);
+
+  box-shadow: 0 0 18px rgba(233, 211, 145, 0.3);
+
+}
+
+
+
+.cta-primary.fluid-glass-ready:hover {
+
+  box-shadow:
+
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+
+    0 6px 28px rgba(168, 198, 185, 0.28);
+
+}
+
+
+
+.cta-secondary.fluid-glass-ready:hover {
+
+  border-color: rgba(168, 198, 185, 0.45) !important;
+
+  color: var(--accent-hover);
+
+}
+
+
+
+/* ── WebGL background tints (file:// fallbacks aligned) ── */
+
+html.rb-file-protocol #hero {
+
+  background:
+
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(168, 198, 185, 0.12) 0%, transparent 55%),
+
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(233, 211, 145, 0.08) 0%, transparent 50%),
+
+    var(--bg);
+
+}
+
+
+
+html.rb-file-protocol #certifications {
+
+  background:
+
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(233, 211, 145, 0.08) 0%, transparent 55%),
+
+    var(--bg-2);
+
+}
+

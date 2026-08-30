@@ -1,0 +1,1180 @@
+/* ════════════════════════════════════════════
+   React-Bits component styles (redesign branch)
+   Grows per phase — Phase 0: background layer shell only
+   ════════════════════════════════════════════ */
+
+.rb-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rb-bg-layer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gradient-blinds-container {
+  mix-blend-mode: screen;
+}
+
+.rb-bg-layer[data-rb-light-rays] canvas {
+  mix-blend-mode: screen;
+}
+
+#skills .rb-bg-layer[data-rb-light-rays] {
+  filter: brightness(1.12) saturate(1.08);
+}
+
+.rb-bg-layer[data-rb-color-bends] canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.rb-silk-layer {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+.rb-silk-layer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ════════════════════════════════════════════
+   Phase 2 — Hero stack (rotating text, profile card, border glow, glass)
+   ════════════════════════════════════════════ */
+
+/* ── Hero specialty line (Specialised in + rotating skill) ── */
+.hero-specialty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4em 0.65em;
+  margin: 0 0 20px;
+  max-width: 100%;
+  line-height: 1.35;
+}
+
+.hero-specialty-label {
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gray-500);
+  flex: 0 0 auto;
+}
+
+.hero-specialty-glass {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.14em 0.52em 0.16em;
+  border-radius: 9px;
+  background: rgba(6, 7, 10, 0.42);
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
+  backdrop-filter: blur(14px) saturate(155%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hero-specialty-glass {
+    background: rgba(12, 14, 18, 0.78);
+  }
+}
+
+.hero-specialty-slot {
+  display: inline-block;
+  min-height: 1.3em;
+  vertical-align: baseline;
+  overflow: visible;
+}
+
+.hero-specialty-text {
+  display: inline-block;
+  --hero-skill-color: var(--accent-champagne);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.1vw, 1.22rem);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: var(--hero-skill-color);
+  transition: color 0.5s ease;
+  white-space: nowrap;
+}
+
+@keyframes hero-skill-fade-out {
+  to {
+    opacity: 0;
+    transform: translateY(0.2em);
+  }
+}
+
+@keyframes hero-skill-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.28em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-specialty-text.is-leaving {
+  animation: hero-skill-fade-out 0.38s var(--ease-out) forwards;
+}
+
+.hero-specialty-text.is-entering {
+  animation: hero-skill-fade-in 0.52s var(--ease-out) forwards;
+}
+
+/* ── Glass / fluid glass ── */
+body.page-services #navbar.glass-surface-nav,
+body.page-services #navbar {
+  background: rgba(0, 0, 0, 0.82) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+#navbar.glass-surface-nav {
+  background: rgba(5, 5, 5, 0.55) !important;
+  backdrop-filter: blur(18px) saturate(1.45) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.45) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+#navbar.glass-surface-nav.scrolled {
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+
+.fluid-glass.fluid-glass-ready.cta-primary,
+.fluid-glass.fluid-glass-ready.cta-secondary,
+.nav-cta.fluid-glass-ready {
+  backdrop-filter: blur(14px) saturate(1.35) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.35) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 4px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.fluid-glass.fluid-glass-ready.cta-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Profile card (hero) ── */
+.hero-image .pc-card-wrapper {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  --card-radius: 24px;
+  --behind-glow-size: 35%;
+}
+
+.hero-profile-card.pc-card {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  max-width: 440px;
+  margin: 0 auto;
+  border-radius: var(--card-radius);
+  display: block;
+  overflow: hidden;
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.35s ease;
+  background: #0d0f14;
+}
+
+.hero-profile-card.pc-card:hover,
+.hero-profile-card.pc-card.active {
+  transition: none;
+  transform: translateZ(0) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
+}
+
+.hero-profile-card .pc-inside {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  background-image: var(--inner-gradient);
+  background-color: rgba(10, 12, 16, 0.95);
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.hero-profile-card .pc-shine,
+.hero-profile-card .pc-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.hero-profile-card .pc-content.profile-card-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: auto;
+  padding: 14px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  transform: translate3d(
+    calc(var(--pointer-from-left) * -4px + 2px),
+    calc(var(--pointer-from-top) * -4px + 2px),
+    0.1px
+  );
+}
+
+.profile-card-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 784 / 960;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #11141c;
+}
+
+.profile-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 18px;
+  filter: grayscale(0%) contrast(1.02);
+  transition: transform 0.7s var(--ease-out), filter 0.5s;
+}
+
+.hero-profile-card:hover .profile-card-photo img,
+.hero-profile-card.active .profile-card-photo img {
+  transform: scale(1.02);
+  filter: contrast(1.04);
+}
+
+.profile-card-photo::after {
+  display: none;
+}
+
+.profile-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--white);
+  pointer-events: none;
+}
+
+.profile-card-badge .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+.profile-card-stats {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  pointer-events: none;
+}
+
+.profile-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.profile-stat-chip--claude {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-stat-chip--accent svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.profile-stat-num {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: var(--grad-vivid);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.profile-stat-label {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.62rem;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 9rem;
+}
+
+/* Shared profile-card vars (subset of react-bits ProfileCard) */
+.pc-card-wrapper {
+  perspective: 500px;
+  transform: translate3d(0, 0, 0.1px);
+  position: relative;
+  touch-action: none;
+}
+
+.pc-behind {
+  position: absolute;
+  inset: -8%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    var(--behind-glow-color) 0%,
+    transparent var(--behind-glow-size, 30%)
+  );
+  filter: blur(50px) saturate(1.1);
+  opacity: calc(0.75 * var(--card-opacity, 0.65));
+  transition: opacity 200ms ease;
+}
+
+.pc-card-wrapper:hover,
+.pc-card-wrapper.active {
+  --card-opacity: 1;
+}
+
+.pc-card-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.pc-inside {
+  inset: 0;
+  position: absolute;
+  background-image: var(--inner-gradient);
+  background-color: rgba(0, 0, 0, 0.88);
+}
+
+.pc-shine {
+  z-index: 3;
+  opacity: 0.35;
+  mix-blend-mode: color-dodge;
+  background: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    rgba(var(--accent-rgb), 0.18) 0%,
+    transparent 70%
+  );
+}
+
+.pc-glare {
+  z-index: 4;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 75%
+  );
+}
+
+/* Hero profile card border glow — see css/border-glow.css (react-bits port) */
+.hero-profile-card.border-glow-card {
+  --border-radius: var(--card-radius, 24px);
+  --glow-padding: 32px;
+  --card-bg: #0a0a0a;
+}
+
+@media (max-width: 1024px) {
+  .hero-image {
+    flex: 1 1 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .profile-card-stats {
+    padding: 12px 14px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-card-stats {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .profile-stat-chip {
+    justify-content: center;
+    font-size: 0.72rem;
+  }
+
+  .profile-stat-chip--accent {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-specialty-text.is-leaving,
+  .hero-specialty-text.is-entering {
+    animation: none;
+  }
+
+
+  .hero-profile-card.pc-card:hover,
+  .hero-profile-card.pc-card.active {
+    transform: none;
+  }
+
+  .rb-flowing-menu-host .marquee {
+    animation: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════
+   Phase 3 — Gooey Nav · Card Nav · Flowing Menu
+   ════════════════════════════════════════════ */
+
+.card-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  position: relative;
+}
+
+.card-nav-flow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-radius: 100px;
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.28);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width, height, left, top;
+}
+
+.card-nav-flow.visible {
+  opacity: 1;
+}
+
+.card-nav .card-nav-link {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Gooey Nav — single sliding pill (no blur / particles / duplicate text) ── */
+.gooey-nav-container {
+  position: relative;
+  overflow: visible;
+}
+
+.gooey-nav-container nav {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.gooey-nav-container .gooey-pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-radius: 100vw;
+  background: var(--grad-accent);
+  box-shadow: 0 0 20px rgba(233, 211, 145, 0.22);
+  pointer-events: none;
+  z-index: 0;
+  will-change: left, top, width, height;
+}
+
+.gooey-nav-container nav ul {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.gooey-nav-container nav ul li {
+  position: relative;
+  border-radius: 100vw;
+}
+
+.gooey-nav-container nav ul li a {
+  display: inline-block;
+  padding: 0.55em 1em;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--gray-300);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.gooey-nav-container nav ul li a::after {
+  display: none !important;
+}
+
+.gooey-nav-container nav ul li.active a {
+  color: #12100e;
+  font-weight: 600;
+}
+
+.gooey-nav-container nav ul li:not(.active) a:hover {
+  color: var(--white);
+}
+
+/* ── Flowing Menu (mobile overlay) — base layout from react-bits FlowingMenu.css ── */
+.rb-flowing-menu-host .menu-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.rb-flowing-menu-host .menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.rb-flowing-menu-host .menu__item {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid;
+}
+
+.rb-flowing-menu-host .menu__item:first-child {
+  border-top: none;
+}
+
+.rb-flowing-menu-host .menu__item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.rb-flowing-menu-host .marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translate3d(0, 101%, 0);
+}
+
+.rb-flowing-menu-host .marquee__inner-wrap {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rb-flowing-menu-host .marquee__inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: fit-content;
+  will-change: transform;
+}
+
+.rb-flowing-menu-host .marquee__part {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.rb-flowing-menu-host {
+  display: none;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.rb-flowing-menu-host .menu-wrap,
+.rb-flowing-menu-host .menu {
+  height: 100%;
+}
+
+.rb-flowing-menu-host .menu__item {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
+
+.rb-flowing-menu-host .menu__item-link {
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--font);
+  font-size: clamp(1.5rem, 5vw, 2.75rem);
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.rb-flowing-menu-host .marquee {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.rb-flowing-menu-host .menu__item.is-active .marquee,
+.rb-flowing-menu-host .menu__item:hover .marquee,
+.rb-flowing-menu-host .menu__item:focus-within .marquee {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.rb-flowing-menu-host .menu__item.is-active .menu__item-link,
+.rb-flowing-menu-host .menu__item:hover .menu__item-link,
+.rb-flowing-menu-host .menu__item:focus-within .menu__item-link {
+  opacity: 0;
+}
+
+.rb-flowing-menu-host .marquee span {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  text-transform: none;
+  font-size: clamp(1.75rem, 6vw, 3.5rem);
+}
+
+/* ── Desktop: Gooey visible, hide duplicate links ── */
+@media (min-width: 769px) {
+  .gooey-nav-container {
+    display: flex;
+    align-items: center;
+  }
+
+  body.has-gooey-nav .card-nav .card-nav-link:not(.card-nav-cta) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  body.has-gooey-nav .card-nav {
+    gap: 0;
+  }
+
+  .rb-flowing-menu-host {
+    display: none !important;
+  }
+}
+
+/* ── Mobile: stacked card-nav links (no flowing menu) ── */
+@media (max-width: 768px) {
+  .gooey-nav-container {
+    display: none !important;
+  }
+
+  .rb-flowing-menu-host {
+    display: none !important;
+  }
+
+  .nav-links {
+    padding: 0;
+    gap: 0;
+    transition:
+      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-links .card-nav {
+    display: none !important;
+  }
+
+  .nav-links.open .card-nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    padding: calc(88px + env(safe-area-inset-top, 0px)) 28px 48px;
+    box-sizing: border-box;
+  }
+
+  .nav-links.open .card-nav .card-nav-link {
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 10px 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+    font-weight: 500;
+    color: var(--white) !important;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .nav-links.open .card-nav .card-nav-link::after {
+    display: none !important;
+  }
+
+  .nav-links.open .card-nav .card-nav-cta {
+    margin-top: 8px;
+    padding: 14px 28px !important;
+    border-radius: 100px;
+    background: var(--accent);
+    color: var(--black) !important;
+  }
+
+  .nav-links.open .card-nav .card-nav-flow {
+    display: none !important;
+  }
+
+  body.nav-menu-open,
+  html.nav-menu-open {
+    overflow: hidden;
+    overscroll-behavior: contain;
+  }
+
+  body.nav-menu-open #navbar {
+    z-index: 10002;
+  }
+
+  .nav-links.open {
+    z-index: 1;
+  }
+
+  /* Hide the hamburger when the menu is open — the dedicated close
+     button (X) inside the menu becomes the only visible affordance,
+     so the two never overlap. */
+  body.nav-menu-open .nav-toggle {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* ════════════════════════════════════════════
+   Phase 4 — Logo Loop, Variable Proximity, Gradual Blur
+   ════════════════════════════════════════════ */
+
+/* ── Logo Loop (replaces CSS @keyframes marquee) ── */
+.marquee-section[data-logo-loop],
+.services-process-marquee[data-logo-loop] {
+  overflow: hidden;
+}
+
+.logoloop {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.logoloop--horizontal .logoloop__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.logoloop--horizontal .logoloop__seq,
+.logoloop--horizontal .logoloop__list {
+  display: flex;
+  align-items: center;
+  gap: var(--logoloop-gap, 32px);
+  padding-right: var(--logoloop-gap, 32px);
+}
+
+.logoloop__item {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-weight: 500;
+  color: var(--gray-300);
+  white-space: nowrap;
+  line-height: var(--logoloop-logoHeight, 28px);
+}
+
+.logoloop__item .dot-sep {
+  color: var(--accent-champagne, var(--accent));
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+
+.logoloop--fade::before,
+.logoloop--fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(48px, 8vw, 120px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logoloop--fade::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+}
+
+.logoloop--fade::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg) 0%, transparent 100%);
+}
+
+.services-process-marquee[data-logo-loop] .logoloop--fade::before,
+.services-process-marquee[data-logo-loop] .logoloop--fade::after {
+  background: linear-gradient(90deg, var(--bg-2) 0%, transparent 100%);
+}
+
+.services-process-marquee[data-logo-loop] .logoloop--fade::after {
+  background: linear-gradient(270deg, var(--bg-2) 0%, transparent 100%);
+}
+
+/* ── Variable Proximity (skills category titles) ── */
+[data-variable-proximity] {
+  display: inline-block;
+  cursor: default;
+}
+
+.variable-proximity-char {
+  display: inline-block;
+  transform-origin: center bottom;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  will-change: transform, opacity, font-variation-settings;
+}
+
+.skills-cat-title[data-variable-proximity] .variable-proximity-char {
+  color: var(--white);
+}
+
+.skills-cat-title[data-variable-proximity] .variable-proximity-char:hover,
+.skills-cat-title[data-variable-proximity]:hover .variable-proximity-char {
+  color: var(--accent-champagne, var(--accent));
+}
+
+/* ── Gradual Blur headings ── */
+.gradual-blur-heading.reveal {
+  filter: blur(10px);
+  transform: translateY(32px);
+  transition:
+    opacity 1s var(--ease-out),
+    transform 1s var(--ease-out),
+    filter 1.15s var(--ease-out);
+}
+
+.gradual-blur-heading.reveal.visible,
+.gradual-blur-heading.gb-visible {
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.gradual-blur-heading:not(.reveal) {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out),
+    filter 1s var(--ease-out);
+}
+
+.gradual-blur-heading:not(.reveal).gb-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoloop__track {
+    transform: none !important;
+  }
+
+  .variable-proximity-char {
+    transform: none !important;
+    opacity: 1 !important;
+    font-variation-settings: normal !important;
+  }
+
+  .gradual-blur-heading {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ════════════════════════════════════════════
+   Phase 5 — Scroll Stack, Image Trail, Border Glow cards
+   ════════════════════════════════════════════ */
+
+.scroll-stack-active .scroll-stack-item {
+  position: sticky;
+  top: clamp(88px, 12vh, 120px);
+  z-index: var(--stack-index, 1);
+  padding-bottom: clamp(48px, 8vh, 96px);
+}
+
+.scroll-stack-inner {
+  background: rgba(14, 14, 14, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.timeline.scroll-stack-active .scroll-stack-inner {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+#services-process .scroll-stack-inner.process-card-inner {
+  padding: 28px 24px;
+}
+
+/* Image trail (CTA) — react-bits */
+#cta-block.content {
+  min-height: 280px;
+}
+
+#cta-block .content__img-pool {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#cta-block .content__img {
+  position: absolute;
+  width: 150px;
+  height: 96px;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+#cta-block .content__img-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Border glow — work & recommendation cards */
+.work-card[data-rb-border-glow],
+.rec-card[data-rb-border-glow] {
+  position: relative;
+  isolation: isolate;
+}
+
+.work-card[data-rb-border-glow]::before,
+.rec-card[data-rb-border-glow]::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--border-glow-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.work-card[data-rb-border-glow] > *,
+.rec-card[data-rb-border-glow] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ════════════════════════════════════════════
+   Phase 6 — Cert mobile + circular gallery shell
+   ════════════════════════════════════════════ */
+
+.cert-mobile-active .cert-scroll {
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.cert-mobile-active .cert-scroll-track {
+  animation: none !important;
+}
+
+.cert-carousel[data-cert-carousel-js] .cert-scroll {
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+}
+
+.cert-carousel[data-cert-carousel-js] .cert-scroll:active {
+  cursor: grabbing;
+}
+
+.cert-carousel[data-cert-carousel-js] .cert-scroll-track {
+  animation: none !important;
+  padding: 0 12px;
+}
+
+.circular-gallery {
+  width: 100%;
+  min-height: 380px;
+  margin-top: 8px;
+}
+
+.cert-scroll.is-rb-hidden {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .scroll-stack-active .scroll-stack-item {
+    position: relative;
+    top: auto;
+    padding-bottom: 0;
+  }
+
+  .scroll-stack-inner {
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .circular-gallery {
+    display: none;
+  }
+}
+
+/* ════════════════════════════════════════════
+   Phase 7 — A11y & polish
+   ════════════════════════════════════════════ */
+
+/* Visually hidden until keyboard focus — translateY hiding fails on iOS Safari */
+.skip-to-content {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-to-content:focus-visible {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  left: max(12px, env(safe-area-inset-left, 0px));
+  z-index: 10001;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px 16px;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+  opacity: 1;
+  pointer-events: auto;
+  background: var(--accent);
+  color: #12100e;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  text-decoration: none;
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+html.rb-focus-enhanced :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* iOS Safari: never show skip link until explicit keyboard focus */
+html.rb-safari .skip-to-content:not(:focus-visible) {
+  position: absolute !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
