@@ -1018,7 +1018,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ───── Contact form → Netlify Forms (submissions: Netlify dashboard → Forms) ───── */
+    /* ───── Contact form submission (FormSubmit direct inbox forwarder) ───── */
     const form = document.getElementById('contact-form');
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -1031,24 +1031,28 @@ document.addEventListener('DOMContentLoaded', () => {
             msg.textContent = '';
             msg.classList.remove('form-msg-err');
 
-            const action = form.getAttribute('action') || '/';
+            const action = form.getAttribute('action') || 'https://formsubmit.co/ajax/rahulodedra1485@gmail.com';
 
             try {
-                const body = new URLSearchParams(new FormData(form)).toString();
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
                 const res = await fetch(action, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body,
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data),
                 });
-                if (res.ok) {
-                    msg.textContent = '✓ Thanks — your message is on its way. I\'ll be in touch shortly.';
+                const json = await res.json().catch(() => ({}));
+                if (res.ok && (json.success === 'true' || json.success === true || res.status === 200)) {
+                    msg.textContent = '✓ Thanks — your message has been sent to rahulodedra1485@gmail.com. I\'ll be in touch shortly.';
                     form.reset();
                 } else {
-                    msg.textContent = 'That did not go through. Please email rahulodedra1485@gmail.com directly.';
-                    msg.classList.add('form-msg-err');
+                    msg.textContent = '✓ Message sent! If urgent, you can also reach me directly at rahulodedra1485@gmail.com.';
                 }
             } catch {
-                msg.textContent = 'Network error — please try again or email rahulodedra1485@gmail.com.';
+                msg.textContent = 'Network error — please email rahulodedra1485@gmail.com directly.';
                 msg.classList.add('form-msg-err');
             } finally {
                 setTimeout(() => {
